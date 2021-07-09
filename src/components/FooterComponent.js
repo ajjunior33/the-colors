@@ -6,7 +6,7 @@ const FooterComponent = () => {
       <Footer>
         <center>
           <p>
-            Create by <a href="http://localhost:3000">Meraki Desenvolvimento</a> - 2021
+            Create by <a href="https://meraki.dev.br/">Meraki Desenvolvimento</a> - 2021
           </p>
         </center>
       </Footer>
