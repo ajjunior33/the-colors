@@ -1,25 +1,26 @@
 import { useState, useEffect } from "react";
+import { FaToggleOff, FaToggleOn } from "react-icons/fa";
+
+//Styles
+import GlobalStyle from "./styles/global";
 import { Button } from "./styles/Button";
 import { Input } from "./styles/Input";
 import { Header } from "./styles/Header";
 import { Row, Col } from "./styles/Grid";
 import { TextDanger } from "./styles/Text";
 
-import { FaToggleOff, FaToggleOn } from "react-icons/fa";
-
-import GlobalStyle from "./styles/global";
-
 //Components
 import { FooterComponent } from "./components/FooterComponent";
+
 function App() {
   const [valueCol, setValueCol] = useState([]);
   const [active, setActive] = useState(false);
   const [qtdColors, setQtdColors] = useState(6);
   useEffect(() => {
-    console.log(qtdColors);
     if (qtdColors > 0 && qtdColors <= 6) {
       handleGenerateColor(qtdColors);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [qtdColors]);
 
   function handleGenerateColor(qtdColors) {
@@ -30,7 +31,7 @@ function App() {
         variant: color,
         color: verifyLum(color) === "light" ? "#2c3e50" : "#ecf0f1",
       };
-      array.push(object);
+      return array.push(object);
     });
     setValueCol(array);
   }
