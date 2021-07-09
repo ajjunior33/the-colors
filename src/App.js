@@ -85,7 +85,7 @@ function App() {
             inputColor="#3498db"
             color="#FFFFFF"
           >
-            Generate new color
+            Gerar nova cor
           </Button>
         </div>
 
