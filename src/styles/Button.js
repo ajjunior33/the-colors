@@ -14,7 +14,7 @@ export const Button = styled.button`
 
   color: ${(props) => props.color || "#2c3e50"};
 
-  cursor:pointer;
+  cursor: pointer;
 
   &:hover {
     filter: brightness(90%);

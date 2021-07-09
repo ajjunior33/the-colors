@@ -120,7 +120,7 @@ function App() {
         </Row>
       </main>
 
-      <TextDanger strong> Você pode definir entre 1 e 6 cores.</TextDanger>
+      <TextDanger strong>* É possível difinir de 1 a 6 cores.</TextDanger>
 
       <FooterComponent />
       <GlobalStyle />
