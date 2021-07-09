@@ -1,3 +1,5 @@
+import Swal from "sweetalert2";
+import { v4 as uuid } from "uuid";
 import { useState, useEffect } from "react";
 import { FaToggleOff, FaToggleOn } from "react-icons/fa";
 
@@ -17,17 +19,37 @@ function App() {
   const [active, setActive] = useState(false);
   const [qtdColors, setQtdColors] = useState(6);
   useEffect(() => {
-    if (qtdColors > 0 && qtdColors <= 6) {
+    if (qtdColors >= 0 && qtdColors <= 6) {
       handleGenerateColor(qtdColors);
+    }else{
+      setQtdColors(6);
+      handleGenerateColor(qtdColors);
+      Toast.fire({
+        icon: "error",
+        title: "Não é possível adicionar essa quantidade de cores.",
+      });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [qtdColors]);
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
 
   function handleGenerateColor(qtdColors) {
     let array = [];
     const colors = generateMultiColors(qtdColors, active);
     colors.map((color) => {
       let object = {
+        id: uuid(),
         variant: color,
         color: verifyLum(color) === "light" ? "#2c3e50" : "#ecf0f1",
       };
