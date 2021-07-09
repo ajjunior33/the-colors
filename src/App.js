@@ -3,6 +3,7 @@ import { Button } from "./styles/Button";
 import { Input } from "./styles/Input";
 import { Header } from "./styles/Header";
 import { Row, Col } from "./styles/Grid";
+import { TextDanger } from "./styles/Text";
 
 import { FaToggleOff, FaToggleOn } from "react-icons/fa";
 
@@ -15,9 +16,10 @@ function App() {
   const [active, setActive] = useState(false);
   const [qtdColors, setQtdColors] = useState(6);
   useEffect(() => {
-
     console.log(qtdColors);
-    handleGenerateColor(qtdColors);
+    if (qtdColors > 0 && qtdColors <= 6) {
+      handleGenerateColor(qtdColors);
+    }
   }, [qtdColors]);
 
   function handleGenerateColor(qtdColors) {
@@ -95,7 +97,7 @@ function App() {
           <strong>Somente cores dark</strong>
         </div>
 
-        <div>
+        <div style={{ width: "280px" }}>
           <Input
             placeholder="Quantidade de cores"
             value={qtdColors}
@@ -116,6 +118,8 @@ function App() {
           ))}
         </Row>
       </main>
+
+      <TextDanger strong> Você pode definir entre 1 e 6 cores.</TextDanger>
 
       <FooterComponent />
       <GlobalStyle />
