@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { FaToggleOff, FaToggleOn } from "react-icons/fa";
 
 //Styles
 import GlobalStyle from "./styles/global";
@@ -11,6 +10,7 @@ import { TextDanger } from "./styles/Text";
 
 //Components
 import { FooterComponent } from "./components/FooterComponent";
+import { DropdownComponent } from "./components/DropdownComponent";
 
 function App() {
   const [valueCol, setValueCol] = useState([]);
@@ -90,12 +90,7 @@ function App() {
         </div>
 
         <div>
-          {active === false ? (
-            <FaToggleOff onClick={() => setActive(true)} />
-          ) : (
-            <FaToggleOn onClick={() => setActive(false)} />
-          )}
-          <strong>Somente cores dark</strong>
+          <DropdownComponent />
         </div>
 
         <div style={{ width: "280px" }}>
