@@ -33,11 +33,12 @@ export const Col = styled.div`
     max-width: 100%;
     height: 150px;
     margin: 10px 0;
+    flex-direction: row;
   }
   svg {
     font-size: 1.4em;
     cursor: pointer;
-    color:${(props) => props.color || "#FFF"};
+    color: ${(props) => props.color || "#FFF"};
   }
 `;
 
@@ -53,7 +54,7 @@ export const ContainerList = styled.section`
     ul {
       display: flex;
       list-style: none;
-      flex-direction: row;
+      flex-direction: column;
     }
   }
 `;
@@ -64,9 +65,15 @@ export const ContainerColumn = styled.section`
 `;
 
 export const Color = styled.li`
-  width: 50px;
+  width: 300px;
   height: 50px;
-  border: 3px solid #ced6e0;
+  margin: 5px 0;
   border-radius: 8px;
   background-color: ${(props) => props.color};
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color:#f1f2f6;
+  justify-content: space-around;
 `;

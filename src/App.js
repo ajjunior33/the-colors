@@ -113,7 +113,7 @@ function App() {
       localStorage.setItem("colorsList", JSON.stringify(object));
     } else {
       let newArray = [];
-      let object = [{ id: uuid(), hex: color }];
+      let object = { id: uuid(), hex: color };
       let listage = JSON.parse(localStorage.getItem("colorsList"));
 
       listage.map((cor) => {
@@ -121,8 +121,11 @@ function App() {
       });
       newArray.push(object);
       localStorage.setItem("colorsList", JSON.stringify(newArray));
-
     }
+    Toast.fire({
+      icon: "success",
+      title: "Cor salva com sucesso.",
+    });
   }
 
   return (
@@ -133,7 +136,7 @@ function App() {
             onClick={() => handleGenerateColor(qtdColors)}
             inputColorVariant="#2980b9"
             inputColor="#3498db"
-            color="#FFFFFF"
+            color="#f1f2f6"
           >
             Gerar nova cor
           </Button>

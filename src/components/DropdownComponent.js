@@ -1,13 +1,27 @@
 import { useEffect, useState } from "react";
-import { FiChevronDown, FiToggleRight, FiToggleLeft } from "react-icons/fi";
-import { DropdownList, DropdownPanel } from "../styles/Dropdown";
-import { FiChevronRight } from "react-icons/fi";
+import { FiChevronDown, FiToggleRight, FiToggleLeft, FiRefreshCw } from "react-icons/fi";
+import { FiChevronRight, FiTrash, FiCopy } from "react-icons/fi";
+import Swal from "sweetalert2";
 
 //Components
 import { ModalComponent } from "./ModalComponent";
 import { ContainerList, Color } from "../styles/Grid";
+//Styles
+import { DropdownList, DropdownPanel } from "../styles/Dropdown";
+import { Button } from "../styles/Button";
 
 const DropdownComponent = () => {
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
   const [active, setActive] = useState(false);
   const [modalEnabled, setModalEnabled] = useState(false);
   const [modalColorsEnabled, setModalColorsEnabled] = useState(false);
@@ -25,16 +39,37 @@ const DropdownComponent = () => {
   }
 
   function loadColors() {
-    let colors = [
-      { id: 1, hex: "#F17225" },
-      { id: 2, hex: "#D49D73" },
-      { id: 3, hex: "#1FE5F8" },
-    ];
-    setListColors(colors);
+    let colors = JSON.parse(localStorage.getItem("colorsList"));
+    if (colors) {
+      setListColors(colors);
+    }
   }
   useEffect(() => {
     loadColors();
   }, [setListColors]);
+
+  function handleCopyClipboard(color) {
+    navigator.clipboard.writeText(color);
+    Toast.fire({
+      icon: "success",
+      title: "Copiado com sucesso.",
+    });
+  }
+  function handleRemoveColor(color) {
+    const newArray = [];
+    listColors.map((cor) => {
+      console.log(cor.hex, color);
+      if (cor.id !== color) {
+        newArray.push({ id: cor.id, hex: cor.hex });
+      }
+    });
+    setListColors(newArray);
+    localStorage.setItem("colorsList", JSON.stringify(newArray));
+    Toast.fire({
+      icon: "success",
+      title: "Removido com sucesso.",
+    });
+  }
 
   function handleColor(color, type) {
     if (color === "dark" && type === "active") {
@@ -129,6 +164,15 @@ const DropdownComponent = () => {
         title="Cores Salvas"
       >
         <ContainerList>
+          <Button
+            onClick={() => loadColors()}
+            inputColorVariant="#2980b9"
+            inputColor="#3498db"
+            color="#f1f2f6"
+          >
+            <FiRefreshCw size={15}/>
+            Recaregar
+          </Button>
           <p>
             <strong>Obs:</strong>
             Você consegue visualizar as cores salvas por você, mas elas ficam
@@ -139,7 +183,10 @@ const DropdownComponent = () => {
             <ul>
               {listColors.length > 0 &&
                 listColors.map((color) => (
-                  <Color color={color.hex} key={color.id} />
+                  <Color color={color.hex} key={color.id}>
+                    <FiCopy onClick={() => handleCopyClipboard(color.hex)} />
+                    <FiTrash onClick={() => handleRemoveColor(color.id)} />
+                  </Color>
                 ))}
             </ul>
           </div>
