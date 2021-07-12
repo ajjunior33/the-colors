@@ -117,7 +117,7 @@ function App() {
       let listage = JSON.parse(localStorage.getItem("colorsList"));
 
       listage.map((cor) => {
-        newArray.push(cor);
+        return newArray.push(cor);
       });
       newArray.push(object);
       localStorage.setItem("colorsList", JSON.stringify(newArray));

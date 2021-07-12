@@ -58,10 +58,10 @@ const DropdownComponent = () => {
   function handleRemoveColor(color) {
     const newArray = [];
     listColors.map((cor) => {
-      console.log(cor.hex, color);
       if (cor.id !== color) {
         newArray.push({ id: cor.id, hex: cor.hex });
       }
+      return newArray;
     });
     setListColors(newArray);
     localStorage.setItem("colorsList", JSON.stringify(newArray));
