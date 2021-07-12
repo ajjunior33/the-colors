@@ -11,6 +11,7 @@ import { TextDanger } from "./styles/Text";
 //Components
 import { FooterComponent } from "./components/FooterComponent";
 import { DropdownComponent } from "./components/DropdownComponent";
+import { ModalComponent } from "./components/ModalComponent";
 
 function App() {
   const [valueCol, setValueCol] = useState([]);
@@ -88,10 +89,10 @@ function App() {
             Gerar nova cor
           </Button>
         </div>
-
         <div>
           <DropdownComponent />
         </div>
+
 
         <div style={{ width: "280px" }}>
           <Input
