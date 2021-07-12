@@ -11,6 +11,10 @@ import { TextDanger } from "./styles/Text";
 //Components
 import { FooterComponent } from "./components/FooterComponent";
 
+import { DropdownComponent } from "./components/DropdownComponent";
+
+
+
 function App() {
   const [valueCol, setValueCol] = useState([]);
   const [qtdColors, setQtdColors] = useState(6);
@@ -86,8 +90,10 @@ function App() {
             Gerar nova cor
           </Button>
         </div>
+        <div>
+          <DropdownComponent />
+        </div>
 
-        <div></div>
 
         <div style={{ width: "280px" }}>
           <Input
