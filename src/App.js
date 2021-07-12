@@ -17,17 +17,12 @@ function App() {
   const [valueCol, setValueCol] = useState([]);
   const [active, setActive] = useState(false);
   const [qtdColors, setQtdColors] = useState(6);
-  const [modalEnabled, setModalEnabled] = useState(false);
   useEffect(() => {
     if (qtdColors > 0 && qtdColors <= 6) {
       handleGenerateColor(qtdColors);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [qtdColors]);
-
-  function handleModal() {
-    return setModalEnabled(true);
-  }
 
   function handleGenerateColor(qtdColors) {
     let array = [];
@@ -93,23 +88,9 @@ function App() {
           >
             Gerar nova cor
           </Button>
-          <ModalComponent
-            onClose={() => setModalEnabled(false)}
-            showModal={modalEnabled}
-            closed={true}
-          />
         </div>
 
-        <div>
-          <Button
-            onClick={() => handleModal()}
-            inputColorVariant="#2980b9"
-            inputColor="#3498db"
-            color="#FFFFFF"
-          >
-            Open Modal
-          </Button>
-        </div>
+        <div></div>
 
         <div style={{ width: "280px" }}>
           <Input
