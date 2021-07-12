@@ -5,7 +5,7 @@ import { FiChevronRight } from "react-icons/fi";
 
 //Components
 import { ModalComponent } from "./ModalComponent";
-import { ContainerList, Color, ContainerColumn } from "../styles/Grid";
+import { ContainerList, Color } from "../styles/Grid";
 
 const DropdownComponent = () => {
   const [active, setActive] = useState(false);
