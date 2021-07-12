@@ -27,14 +27,14 @@ const DropdownComponent = () => {
   function loadColors() {
     let colors = [
       { id: 1, hex: "#F17225" },
-      { id: 1, hex: "#D49D73" },
-      { id: 1, hex: "#1FE5F8" },
+      { id: 2, hex: "#D49D73" },
+      { id: 3, hex: "#1FE5F8" },
     ];
     setListColors(colors);
   }
   useEffect(() => {
     loadColors();
-  }, [listColors]);
+  }, [setListColors]);
 
   function handleColor(color, type) {
     if (color === "dark" && type === "active") {
@@ -135,11 +135,13 @@ const DropdownComponent = () => {
             aqui temporáriamente.
           </p>
 
-          <div className="list">
-            {listColors.length > 0 &&
-              listColors.map((color) => (
-                <Color color={color.hex} key={color.id} />
-              ))}
+          <div className="listage">
+            <ul>
+              {listColors.length > 0 &&
+                listColors.map((color) => (
+                  <Color color={color.hex} key={color.id} />
+                ))}
+            </ul>
           </div>
         </ContainerList>
       </ModalComponent>

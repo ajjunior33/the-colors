@@ -42,6 +42,14 @@ export const ContainerList = styled.section`
     display: flex;
     flex-direction: row;
   }
+  .listage {
+    display: flex;
+    ul {
+      display: flex;
+      list-style: none;
+      flex-direction: row;
+    }
+  }
 `;
 
 export const ContainerColumn = styled.section`
@@ -49,7 +57,7 @@ export const ContainerColumn = styled.section`
   flex-direction: column;
 `;
 
-export const Color = styled.div`
+export const Color = styled.li`
   width: 50px;
   height: 50px;
   border: 3px solid #ced6e0;
