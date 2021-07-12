@@ -5,21 +5,20 @@ export const Button = styled.button`
   border: 0;
   border-radius: 5px;
 
-  background-color: ${(props) => props.inputColor || "#f1f2f6"};
-  border: 1px solid ${(props) => props.inputColorVariant || "#ced6e0"};
+  background-color: ${(props) => props.inputColor || "#ecf0f1"};
+  border: 1px solid ${(props) => props.inputColorVariant || "#bdc3c7"};
   box-shadow: inset 2px 0px 5px
-    ${(props) => props.inputColorVariant || "#ced6e0"};
+    ${(props) => props.inputColorVariant || "#bdc3c7"};
 
   transition: 500ms all;
 
-  color: ${(props) => props.color || "#2f3542"};
+  color: ${(props) => props.color || "#2c3e50"};
 
   cursor: pointer;
 
   &:hover {
-    /* filter: brightness(90%); */
-    background-color:#ced6e0;
+    filter: brightness(90%);
     box-shadow: inset 2px 0px 10px
-      ${(props) => props.inputColorVariant || "#ced6e0"};
+      ${(props) => props.inputColorVariant || "#bdc3c7"};
   }
 `;
