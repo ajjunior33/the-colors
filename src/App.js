@@ -11,6 +11,7 @@ import { TextDanger } from "./styles/Text";
 
 //Components
 import { FooterComponent } from "./components/FooterComponent";
+import { ModalComponent } from "./components/ModalComponent";
 
 function App() {
   const [valueCol, setValueCol] = useState([]);
@@ -89,14 +90,7 @@ function App() {
           </Button>
         </div>
 
-        <div>
-          {active === false ? (
-            <FaToggleOff onClick={() => setActive(true)} />
-          ) : (
-            <FaToggleOn onClick={() => setActive(false)} />
-          )}
-          <strong>Somente cores dark</strong>
-        </div>
+        <div></div>
 
         <div style={{ width: "280px" }}>
           <Input
