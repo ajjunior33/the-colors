@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { FaToggleOff, FaToggleOn } from "react-icons/fa";
 
 //Styles
 import GlobalStyle from "./styles/global";
@@ -11,11 +10,9 @@ import { TextDanger } from "./styles/Text";
 
 //Components
 import { FooterComponent } from "./components/FooterComponent";
-import { ModalComponent } from "./components/ModalComponent";
 
 function App() {
   const [valueCol, setValueCol] = useState([]);
-  const [active, setActive] = useState(false);
   const [qtdColors, setQtdColors] = useState(6);
   useEffect(() => {
     if (qtdColors > 0 && qtdColors <= 6) {
@@ -26,7 +23,7 @@ function App() {
 
   function handleGenerateColor(qtdColors) {
     let array = [];
-    const colors = generateMultiColors(qtdColors, active);
+    const colors = generateMultiColors(qtdColors);
     colors.map((color) => {
       let object = {
         variant: color,
