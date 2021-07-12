@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { v4 as uuid } from "uuid";
 
 //Styles
 import GlobalStyle from "./styles/global";
@@ -10,10 +11,7 @@ import { TextDanger } from "./styles/Text";
 
 //Components
 import { FooterComponent } from "./components/FooterComponent";
-
 import { DropdownComponent } from "./components/DropdownComponent";
-
-
 
 function App() {
   const [valueCol, setValueCol] = useState([]);
@@ -30,6 +28,7 @@ function App() {
     const colors = generateMultiColors(qtdColors);
     colors.map((color) => {
       let object = {
+        id: uuid(),
         variant: color,
         color: verifyLum(color) === "light" ? "#2c3e50" : "#ecf0f1",
       };
@@ -93,7 +92,6 @@ function App() {
         <div>
           <DropdownComponent />
         </div>
-
 
         <div style={{ width: "280px" }}>
           <Input

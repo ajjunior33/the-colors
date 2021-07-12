@@ -34,3 +34,25 @@ export const Col = styled.div`
     margin: 10px 0;
   }
 `;
+
+export const ContainerList = styled.section`
+  display: flex;
+  flex-direction: column;
+  .list {
+    display: flex;
+    flex-direction: row;
+  }
+`;
+
+export const ContainerColumn = styled.section`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const Color = styled.div`
+  width: 50px;
+  height: 50px;
+  border: 3px solid #ced6e0;
+  border-radius: 8px;
+  background-color: ${(props) => props.color};
+`;

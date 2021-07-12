@@ -1,11 +1,10 @@
 import { FiChevronRight } from "react-icons/fi";
 
-import { DropdownItem } from "../styles/Dropdown";
 const DropdownComponentItem = ({ itemName }) => {
   return (
-    <DropdownItem>
+    <button className="DropdownItem">
       {itemName} <FiChevronRight />
-    </DropdownItem>
+    </button>
   );
 };
 
