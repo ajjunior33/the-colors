@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { v4 as uuid } from "uuid";
+import { FiCopy, FiSave } from "react-icons/fi";
+import Swal from "sweetalert2";
 
 //Styles
 import GlobalStyle from "./styles/global";
@@ -20,8 +22,28 @@ function App() {
     if (qtdColors > 0 && qtdColors <= 6) {
       handleGenerateColor(qtdColors);
     }
+
+    if (qtdColors > 6 || qtdColors < 0) {
+      Toast.fire({
+        icon: "error",
+        title: "Não é possível usar essa quantidade de Colunas.",
+      });
+      setQtdColors(6);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [qtdColors]);
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
 
   function handleGenerateColor(qtdColors) {
     let array = [];
@@ -76,6 +98,33 @@ function App() {
     );
   }
 
+  function handleCopyClipboard(color) {
+    navigator.clipboard.writeText(color);
+    Toast.fire({
+      icon: "success",
+      title: "Copiado com sucesso.",
+    });
+  }
+
+  function handleSaveColors(color) {
+    const item = localStorage.getItem("colorsList");
+    if (!item) {
+      const object = [{ id: uuid(), hex: color }];
+      localStorage.setItem("colorsList", JSON.stringify(object));
+    } else {
+      let newArray = [];
+      let object = [{ id: uuid(), hex: color }];
+      let listage = JSON.parse(localStorage.getItem("colorsList"));
+
+      listage.map((cor) => {
+        newArray.push(cor);
+      });
+      newArray.push(object);
+      localStorage.setItem("colorsList", JSON.stringify(newArray));
+
+    }
+  }
+
   return (
     <>
       <Header>
@@ -109,7 +158,9 @@ function App() {
         <Row>
           {valueCol.map((item) => (
             <Col color={item.color} variant={item.variant} key={item.id}>
+              <FiCopy onClick={() => handleCopyClipboard(item.variant)} />
               <strong>{item.variant}</strong>
+              <FiSave onClick={() => handleSaveColors(item.variant)} />
             </Col>
           ))}
         </Row>

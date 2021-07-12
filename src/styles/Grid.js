@@ -16,8 +16,8 @@ export const Col = styled.div`
   padding: 15px;
 
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
 
   background-color: ${(props) => props.variant || "#16a085"};
@@ -25,6 +25,7 @@ export const Col = styled.div`
 
   border-radius: 8px;
   margin: 30px 10px;
+  font-size: 1.1em;
   font-family: "Nunito Sans", sans-serif;
   font-weight: bold;
 
@@ -32,6 +33,11 @@ export const Col = styled.div`
     max-width: 100%;
     height: 150px;
     margin: 10px 0;
+  }
+  svg {
+    font-size: 1.4em;
+    cursor: pointer;
+    color:${(props) => props.color || "#FFF"};
   }
 `;
 
