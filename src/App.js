@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { v4 as uuid } from "uuid";
-import { FiCopy, FiSave } from "react-icons/fi";
+import { FiCopy, FiSave, FiRefreshCw} from "react-icons/fi";
 import Swal from "sweetalert2";
 
 //Styles
@@ -138,6 +138,7 @@ function App() {
             inputColor="#3498db"
             color="#f1f2f6"
           >
+            <FiRefreshCw size={15}/>
             Gerar nova cor
           </Button>
         </div>
