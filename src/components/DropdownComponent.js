@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
-import { FiChevronDown, FiToggleRight, FiToggleLeft, FiRefreshCw } from "react-icons/fi";
+import {
+  FiChevronDown,
+  FiToggleRight,
+  FiToggleLeft,
+  FiRefreshCw,
+} from "react-icons/fi";
 import { FiChevronRight, FiTrash, FiCopy } from "react-icons/fi";
 import Swal from "sweetalert2";
 
@@ -99,9 +104,7 @@ const DropdownComponent = () => {
   return (
     <>
       <DropdownPanel onClick={handleActiveDropdown}>
-        <span>
-          Exibir mais opções <FiChevronDown />
-        </span>
+        <FiChevronDown className="iconDropdown"/>
 
         {active === true && (
           <DropdownList>
@@ -170,7 +173,7 @@ const DropdownComponent = () => {
             inputColor="#3498db"
             color="#f1f2f6"
           >
-            <FiRefreshCw size={15}/>
+            <FiRefreshCw size={15} />
             Recaregar
           </Button>
           <p>
