@@ -28,5 +28,10 @@ export const Header = styled.header`
     flex-direction: row;
     justify-content: flex-end !important;
     align-items: center;
+    @media (max-width: 640px) {
+      position: absolute;
+      top: 20px;
+      right: 10px;
+    }
   }
 `;
