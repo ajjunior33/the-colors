@@ -1,7 +1,9 @@
 import Swal from "sweetalert2";
 import { v4 as uuid } from "uuid";
 import { useState, useEffect } from "react";
-import { FaToggleOff, FaToggleOn } from "react-icons/fa";
+import { v4 as uuid } from "uuid";
+import { FiCopy, FiSave } from "react-icons/fi";
+import Swal from "sweetalert2";
 
 //Styles
 import GlobalStyle from "./styles/global";
@@ -13,10 +15,10 @@ import { TextDanger } from "./styles/Text";
 
 //Components
 import { FooterComponent } from "./components/FooterComponent";
+import { DropdownComponent } from "./components/DropdownComponent";
 
 function App() {
   const [valueCol, setValueCol] = useState([]);
-  const [active, setActive] = useState(false);
   const [qtdColors, setQtdColors] = useState(6);
   useEffect(() => {
     if (qtdColors >= 0 && qtdColors <= 6) {
@@ -28,6 +30,14 @@ function App() {
         icon: "error",
         title: "Não é possível adicionar essa quantidade de cores.",
       });
+    }
+
+    if (qtdColors > 6 || qtdColors < 0) {
+      Toast.fire({
+        icon: "error",
+        title: "Não é possível usar essa quantidade de Colunas.",
+      });
+      setQtdColors(6);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [qtdColors]);
@@ -46,7 +56,7 @@ function App() {
 
   function handleGenerateColor(qtdColors) {
     let array = [];
-    const colors = generateMultiColors(qtdColors, active);
+    const colors = generateMultiColors(qtdColors);
     colors.map((color) => {
       let object = {
         id: uuid(),
@@ -97,6 +107,36 @@ function App() {
     );
   }
 
+  function handleCopyClipboard(color) {
+    navigator.clipboard.writeText(color);
+    Toast.fire({
+      icon: "success",
+      title: "Copiado com sucesso.",
+    });
+  }
+
+  function handleSaveColors(color) {
+    const item = localStorage.getItem("colorsList");
+    if (!item) {
+      const object = [{ id: uuid(), hex: color }];
+      localStorage.setItem("colorsList", JSON.stringify(object));
+    } else {
+      let newArray = [];
+      let object = { id: uuid(), hex: color };
+      let listage = JSON.parse(localStorage.getItem("colorsList"));
+
+      listage.map((cor) => {
+        return newArray.push(cor);
+      });
+      newArray.push(object);
+      localStorage.setItem("colorsList", JSON.stringify(newArray));
+    }
+    Toast.fire({
+      icon: "success",
+      title: "Cor salva com sucesso.",
+    });
+  }
+
   return (
     <>
       <Header>
@@ -105,19 +145,13 @@ function App() {
             onClick={() => handleGenerateColor(qtdColors)}
             inputColorVariant="#2980b9"
             inputColor="#3498db"
-            color="#FFFFFF"
+            color="#f1f2f6"
           >
             Gerar nova cor
           </Button>
         </div>
-
         <div>
-          {active === false ? (
-            <FaToggleOff onClick={() => setActive(true)} />
-          ) : (
-            <FaToggleOn onClick={() => setActive(false)} />
-          )}
-          <strong>Somente cores dark</strong>
+          <DropdownComponent />
         </div>
 
         <div style={{ width: "280px" }}>
@@ -136,7 +170,9 @@ function App() {
         <Row>
           {valueCol.map((item) => (
             <Col color={item.color} variant={item.variant} key={item.id}>
+              <FiCopy onClick={() => handleCopyClipboard(item.variant)} />
               <strong>{item.variant}</strong>
+              <FiSave onClick={() => handleSaveColors(item.variant)} />
             </Col>
           ))}
         </Row>
