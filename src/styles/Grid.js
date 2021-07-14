@@ -82,3 +82,4 @@ export const Color = styled.li`
   color: #f1f2f6;
   justify-content: space-around;
 `;
+

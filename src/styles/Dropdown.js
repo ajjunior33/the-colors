@@ -39,7 +39,7 @@ export const DropdownList = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
 
     padding: 10px 5px;
     text-align: center;

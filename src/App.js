@@ -1,9 +1,7 @@
 import Swal from "sweetalert2";
 import { v4 as uuid } from "uuid";
 import { useState, useEffect } from "react";
-import { v4 as uuid } from "uuid";
 import { FiCopy, FiSave, FiRefreshCw } from "react-icons/fi";
-import Swal from "sweetalert2";
 
 //Styles
 import GlobalStyle from "./styles/global";
@@ -24,7 +22,7 @@ function App() {
   useEffect(() => {
     if (qtdColors >= 0 && qtdColors <= 6) {
       handleGenerateColor(qtdColors);
-    }else{
+    } else {
       setQtdColors(6);
       handleGenerateColor(qtdColors);
       Toast.fire({
