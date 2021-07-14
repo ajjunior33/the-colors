@@ -21,7 +21,7 @@ export const Col = styled.div`
   align-items: center;
 
   background-color: ${(props) => props.variant || "#16a085"};
-  color: ${(props) => props.color || "#FFF"};
+  color: ${(props) => props.color || "#ced6e0"};
 
   border-radius: 8px;
   margin: 30px 10px;
@@ -38,7 +38,7 @@ export const Col = styled.div`
   svg {
     font-size: 1.4em;
     cursor: pointer;
-    color: ${(props) => props.color || "#FFF"};
+    color: ${(props) => props.color || "#ced6e0"};
   }
 `;
 
@@ -51,10 +51,15 @@ export const ContainerList = styled.section`
   }
   .listage {
     display: flex;
+    justify-content: center;
     ul {
       display: flex;
       list-style: none;
       flex-direction: column;
+      li {
+        font-size: 1.3em;
+        cursor:pointer;
+      }
     }
   }
 `;
@@ -74,6 +79,6 @@ export const Color = styled.li`
   display: flex;
   flex-direction: row;
   align-items: center;
-  color:#f1f2f6;
+  color: #f1f2f6;
   justify-content: space-around;
 `;
