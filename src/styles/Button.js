@@ -1,11 +1,6 @@
 import styled from "styled-components";
 
 export const Button = styled.button`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content:center;
-
   padding: 8px 15px;
   border: 0;
   border-radius: 5px;
@@ -21,9 +16,6 @@ export const Button = styled.button`
 
   cursor: pointer;
 
-  svg{
-    margin-right:5px;
-  }
   &:hover {
     filter: brightness(90%);
     box-shadow: inset 2px 0px 10px

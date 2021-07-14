@@ -1,7 +1,7 @@
-import Swal from "sweetalert2";
-import { v4 as uuid } from "uuid";
 import { useState, useEffect } from "react";
-import { FiCopy, FiSave, FiRefreshCw } from "react-icons/fi";
+import { v4 as uuid } from "uuid";
+import { FiCopy, FiSave } from "react-icons/fi";
+import Swal from "sweetalert2";
 
 //Styles
 import GlobalStyle from "./styles/global";
@@ -14,21 +14,13 @@ import { TextDanger } from "./styles/Text";
 //Components
 import { FooterComponent } from "./components/FooterComponent";
 import { DropdownComponent } from "./components/DropdownComponent";
-import { UserComponent } from "./components/UserComponent";
 
 function App() {
   const [valueCol, setValueCol] = useState([]);
   const [qtdColors, setQtdColors] = useState(6);
   useEffect(() => {
-    if (qtdColors >= 0 && qtdColors <= 6) {
+    if (qtdColors > 0 && qtdColors <= 6) {
       handleGenerateColor(qtdColors);
-    } else {
-      setQtdColors(6);
-      handleGenerateColor(qtdColors);
-      Toast.fire({
-        icon: "error",
-        title: "Não é possível adicionar essa quantidade de cores.",
-      });
     }
 
     if (qtdColors > 6 || qtdColors < 0) {
@@ -139,19 +131,21 @@ function App() {
   return (
     <>
       <Header>
-        <div className="comum">
+        <div>
           <Button
             onClick={() => handleGenerateColor(qtdColors)}
             inputColorVariant="#2980b9"
             inputColor="#3498db"
             color="#f1f2f6"
           >
-            <FiRefreshCw size={15} />
             Gerar nova cor
           </Button>
         </div>
+        <div>
+          <DropdownComponent />
+        </div>
 
-        <div className="comum" style={{ width: "280px" }}>
+        <div style={{ width: "280px" }}>
           <Input
             placeholder="Quantidade de cores"
             value={qtdColors}
@@ -160,10 +154,6 @@ function App() {
             max="6"
             onChange={(e) => setQtdColors(e.target.value)}
           />
-        </div>
-        <div id="bloco_usuario">
-          <UserComponent />
-          <DropdownComponent />
         </div>
       </Header>
 

@@ -9,8 +9,6 @@ export const Modal = styled.div`
   background-color: rgba(47, 53, 66, 0.6);
 
   display: flex;
-  justify-content:center;
-  align-items:center;
   z-index: 5000;
 
   margin: 0 auto !important;

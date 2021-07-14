@@ -3,8 +3,7 @@ import styled from "styled-components";
 export const Header = styled.header`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  .comum {
+  div {
     margin: 10px 15px;
     display: flex;
     flex-direction: row;
@@ -14,24 +13,12 @@ export const Header = styled.header`
       margin: 0 5px;
       font-size: 1.5em;
     }
-    @media (max-width: 640px) {
+    @media(max-width:640px){
       margin: 15px auto;
     }
   }
-
   @media (max-width: 640px) {
     flex-direction: column;
-  }
 
-  #bloco_usuario {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end !important;
-    align-items: center;
-    @media (max-width: 640px) {
-      position: absolute;
-      top: 20px;
-      right: 10px;
-    }
   }
 `;

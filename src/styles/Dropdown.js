@@ -2,19 +2,31 @@ import styled from "styled-components";
 
 export const DropdownPanel = styled.div`
   position: relative;
-  padding: 0 10px;
+  width: 100%;
+  border: 2px solid #57606f;
+  padding: 10px 25px;
   border-radius: 8px;
-  .iconDropdown{
-    cursor:pointer;
-    font-size: 1.3em;
-    color:#2f3542;
+  span {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    font-weight: bold;
+    color: #57606f;
+
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
   }
 `;
 
 export const DropdownList = styled.div`
   position: absolute;
   top: 40px;
-  right:0px;
   width: 380px;
   border-radius: 8px;
   z-index: 1000;
@@ -22,7 +34,7 @@ export const DropdownList = styled.div`
   padding: 30px;
 
   display: flex;
-  flex-direction: column;
+  flex-direction: column !important;
   border: 1px solid rgba(47, 53, 66, 0.6);
   box-shadow: 1px 1px 15px rgba(47, 53, 66, 0.4);
   span {
@@ -39,7 +51,7 @@ export const DropdownList = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
 
     padding: 10px 5px;
     text-align: center;
