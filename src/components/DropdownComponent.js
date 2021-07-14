@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
-import { FiChevronDown, FiToggleRight, FiToggleLeft, FiRefreshCw } from "react-icons/fi";
+import {
+  FiChevronDown,
+  FiToggleRight,
+  FiToggleLeft,
+  FiRefreshCw,
+} from "react-icons/fi";
 import { FiChevronRight, FiTrash, FiCopy } from "react-icons/fi";
 import Swal from "sweetalert2";
+import { v4 as uuid } from "uuid";
 
 //Components
 import { ModalComponent } from "./ModalComponent";
@@ -9,6 +15,7 @@ import { ContainerList, Color } from "../styles/Grid";
 //Styles
 import { DropdownList, DropdownPanel } from "../styles/Dropdown";
 import { Button } from "../styles/Button";
+import { Input, InputControl, InputGroup } from "../styles/Input";
 
 const DropdownComponent = () => {
   const Toast = Swal.mixin({
@@ -25,6 +32,8 @@ const DropdownComponent = () => {
   const [active, setActive] = useState(false);
   const [modalEnabled, setModalEnabled] = useState(false);
   const [modalColorsEnabled, setModalColorsEnabled] = useState(false);
+  const [modalColorsPersonalized, setModalColorsPersonalized] = useState(false);
+  const [colorPersonalized, setColorPersonalized] = useState("#232121");
 
   const [listColors, setListColors] = useState([]);
 
@@ -36,6 +45,11 @@ const DropdownComponent = () => {
     } else {
       setActive(true);
     }
+  }
+
+  function handleUpdateColor(e) {
+    let color = e.target.value;
+    setColorPersonalized(color);
   }
 
   function loadColors() {
@@ -96,12 +110,32 @@ const DropdownComponent = () => {
       setSomerLight(false);
     }
   }
+
+  function handleSaveColors(color) {
+    const item = localStorage.getItem("colorsList");
+    if (!item) {
+      const object = [{ id: uuid(), hex: color }];
+      localStorage.setItem("colorsList", JSON.stringify(object));
+    } else {
+      let newArray = [];
+      let object = { id: uuid(), hex: color };
+      let listage = JSON.parse(localStorage.getItem("colorsList"));
+
+      listage.map((cor) => {
+        return newArray.push(cor);
+      });
+      newArray.push(object);
+      localStorage.setItem("colorsList", JSON.stringify(newArray));
+    }
+    Toast.fire({
+      icon: "success",
+      title: "Cor salva com sucesso.",
+    });
+  }
   return (
     <>
       <DropdownPanel onClick={handleActiveDropdown}>
-        <span>
-          Exibir mais opções <FiChevronDown />
-        </span>
+        <FiChevronDown className="iconDropdown" />
 
         {active === true && (
           <DropdownList>
@@ -111,6 +145,14 @@ const DropdownComponent = () => {
               onClick={() => setModalColorsEnabled(true)}
             >
               Cores salvas
+              <FiChevronRight />
+            </button>
+
+            <button
+              className="DropdownItem"
+              onClick={() => setModalColorsPersonalized()}
+            >
+              Cores Personalizadas
               <FiChevronRight />
             </button>
             <span>Configurações</span>
@@ -170,7 +212,7 @@ const DropdownComponent = () => {
             inputColor="#3498db"
             color="#f1f2f6"
           >
-            <FiRefreshCw size={15}/>
+            <FiRefreshCw size={15} />
             Recaregar
           </Button>
           <p>
@@ -190,6 +232,38 @@ const DropdownComponent = () => {
                 ))}
             </ul>
           </div>
+        </ContainerList>
+      </ModalComponent>
+
+      <ModalComponent
+        onClose={() => setModalColorsPersonalized(false)}
+        showModal={modalColorsPersonalized}
+        closed={true}
+        title="Gerar uma cor personalizada"
+      >
+        <ContainerList>
+          PREVIEW
+          <Color color={colorPersonalized} />
+          <InputControl>
+            <label htmlFor="input_color">Insira o hex da cor: </label>
+            <InputGroup>
+              <Input
+                type="color"
+                value={colorPersonalized}
+                placeholder="#232121"
+                onChange={(e) => handleUpdateColor(e)}
+                style={{ height: "40px" }}
+              />
+              <Button
+                onClick={() => handleSaveColors(colorPersonalized)}
+                inputColorVariant="#2ecc71"
+                inputColor="#27ae60"
+                color="#f1f2f6"
+              >
+                Salvar
+              </Button>
+            </InputGroup>
+          </InputControl>
         </ContainerList>
       </ModalComponent>
     </>
