@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { v4 as uuid } from "uuid";
-import { FiCopy, FiSave } from "react-icons/fi";
+import { FiCopy, FiSave, FiRefreshCw } from "react-icons/fi";
 import Swal from "sweetalert2";
 
 //Styles
@@ -14,6 +14,7 @@ import { TextDanger } from "./styles/Text";
 //Components
 import { FooterComponent } from "./components/FooterComponent";
 import { DropdownComponent } from "./components/DropdownComponent";
+import { UserComponent } from "./components/UserComponent";
 
 function App() {
   const [valueCol, setValueCol] = useState([]);
@@ -131,21 +132,19 @@ function App() {
   return (
     <>
       <Header>
-        <div>
+        <div className="comum">
           <Button
             onClick={() => handleGenerateColor(qtdColors)}
             inputColorVariant="#2980b9"
             inputColor="#3498db"
             color="#f1f2f6"
           >
+            <FiRefreshCw size={15} />
             Gerar nova cor
           </Button>
         </div>
-        <div>
-          <DropdownComponent />
-        </div>
 
-        <div style={{ width: "280px" }}>
+        <div className="comum" style={{ width: "280px" }}>
           <Input
             placeholder="Quantidade de cores"
             value={qtdColors}
@@ -154,6 +153,10 @@ function App() {
             max="6"
             onChange={(e) => setQtdColors(e.target.value)}
           />
+        </div>
+        <div id="bloco_usuario">
+          <UserComponent />
+          <DropdownComponent />
         </div>
       </Header>
 
