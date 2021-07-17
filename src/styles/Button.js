@@ -18,12 +18,10 @@ export const Button = styled.button`
   transition: 500ms all;
 
   color: ${(props) => props.color || "#2c3e50"};
+  text-align: center;
 
   cursor: pointer;
 
-  svg {
-    margin-right: 5px;
-  }
   &:hover {
     filter: brightness(90%);
     box-shadow: inset 2px 0px 10px
@@ -37,7 +35,7 @@ export const ButtonBlock = styled.button`
   align-items: center;
   justify-content: center;
 
-  width:100%;
+  width: 100%;
   padding: 8px 15px;
   border: 0;
   border-radius: 5px;

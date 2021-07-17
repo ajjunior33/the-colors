@@ -34,4 +34,20 @@ export const Header = styled.header`
       right: 10px;
     }
   }
+
+  .logo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 15px;
+    img {
+      width: 80px;
+    }
+    strong {
+      font-size: 2em;
+      margin-left: 20px;
+    }
+  }
 `;
