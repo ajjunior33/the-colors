@@ -6,7 +6,7 @@ import { Button } from "../styles/Button";
 import { Modal } from "../styles/Modal";
 const ModalComponent = (props) => {
   if (props.showModal === false) {
-    return null; 
+    return null;
   }
 
   return (
@@ -21,9 +21,11 @@ const ModalComponent = (props) => {
         </div>
         <div className="modal-footer">
           {props.closed === true && (
-            <Button onClick={props.onClose}>Fechar</Button>
+            <Button inputColor="#f90b19" inputColorVariant="#f90b19" color="#f1f2f6" onClick={props.onClose}>
+              Fechar
+            </Button>
           )}
-        </div> 
+        </div>
       </div>
     </Modal>
   );
