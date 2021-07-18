@@ -10,6 +10,7 @@ import { v4 as uuid } from "uuid";
 //Components
 import { ModalComponent } from "./ModalComponent";
 import { ContainerList, Color } from "../styles/Grid";
+
 //Styles
 import { DropdownList, DropdownPanel } from "../styles/Dropdown";
 import { Button } from "../styles/Button";
@@ -128,13 +129,7 @@ const DropdownComponent = () => {
             </button>
             <span>Configurações</span>
 
-            <button
-              className="DropdownItem"
-              onClick={() => setModalEnabled(true)}
-            >
-              Distribuição de cores
-              <FiChevronRight />
-            </button>
+           
           </DropdownList>
         )}
       </DropdownPanel>
