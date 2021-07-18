@@ -48,18 +48,6 @@ export const ContainerList = styled.section`
   .list {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    margin:10px 0;
-  }
-  .item{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    svg{
-      margin-right: 10px;
-      font-size:1.5em;
-    }
   }
   .listage {
     display: flex;

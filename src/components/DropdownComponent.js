@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import {
   FiChevronDown,
+  FiToggleRight,
+  FiToggleLeft,
   FiRefreshCw,
 } from "react-icons/fi";
 import { FiChevronRight, FiTrash, FiCopy } from "react-icons/fi";
@@ -34,7 +36,9 @@ const DropdownComponent = () => {
   const [colorPersonalized, setColorPersonalized] = useState("#232121");
 
   const [listColors, setListColors] = useState([]);
-  
+
+  const [somerDark, setSomerDark] = useState(false);
+  const [somerLight, setSomerLight] = useState(false);
   function handleActiveDropdown() {
     if (active === true) {
       setActive(false);
@@ -81,6 +85,31 @@ const DropdownComponent = () => {
     });
   }
 
+  function handleColor(color, type) {
+    if (color === "dark" && type === "active") {
+      if (somerLight === true) {
+        setSomerLight(false);
+        return setSomerDark(true);
+      } else {
+        return setSomerDark(true);
+      }
+    } else if (color === "dark" && type === "disable") {
+      setSomerDark(false);
+    } else if (color === "light" && type === "disable") {
+      setSomerLight(false);
+    } else if (color === "light" && type === "active") {
+      if (somerDark === true) {
+        setSomerDark(false);
+        return setSomerLight(true);
+      } else {
+        return setSomerLight(true);
+      }
+    } else {
+      setSomerDark(false);
+
+      setSomerLight(false);
+    }
+  }
 
   function handleSaveColors(color) {
     const item = localStorage.getItem("colorsList");
@@ -147,7 +176,26 @@ const DropdownComponent = () => {
       >
         <ContainerList>
           <h3>Gerar Cores</h3>
-         
+          <div className="list">
+            <div>
+              {somerDark === true ? (
+                <FiToggleRight onClick={() => handleColor("dark", "disable")} />
+              ) : (
+                <FiToggleLeft onClick={() => handleColor("dark", "active")} />
+              )}
+              Somente cores escuras
+            </div>
+            <div>
+              {somerLight === true ? (
+                <FiToggleRight
+                  onClick={() => handleColor("light", "disable")}
+                />
+              ) : (
+                <FiToggleLeft onClick={() => handleColor("light", "active")} />
+              )}{" "}
+              Somente cores claras
+            </div>
+          </div>
         </ContainerList>
       </ModalComponent>
 
